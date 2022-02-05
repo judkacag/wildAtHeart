@@ -1,11 +1,15 @@
 // Variables
 var myFont;
 let circleCenter = 720;
-let calloutOne = "Well, you ain’t let me down yet, Sail’. That’s more than I can say for the rest of the world."
-let calloutTwo = "Sailor singing Love me tender to Lula on top of the car"
-let calloutThree = "The film starts with Sailor getting into jail for killing Bobby Ray Lemon"
-let calloutFour = "Sail’, how come you didn’t sing me Love me tender? You told me that was your favorite love song."
-let calloutFive = "I told you I’d only sing Love me tender to my wife."
+let calloutOne = "Well, you ain’t let me down yet, Sail’. That’s more than I can say for the rest of the world.";
+let calloutTwo = "Sailor singing Love me tender to Lula on top of the car";
+let calloutThree = "The film starts with Sailor getting into jail for killing Bobby Ray Lemon";
+let calloutFour = "- Sail’, how come you didn’t sing me Love me tender? You told me that was your favorite love song.";
+let calloutFive = "- I told you I’d only sing Love me tender to my wife.";
+let calloutSix = "- I’d go to the far end of the world for you baby.";
+let calloutSeven = "- Rockin’ good news.";
+let chartTitle = "Who's smoking?";
+let howToRead = "How to read?";
 
 // Data
 let singX = [556, 898];
@@ -37,25 +41,39 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1400, 900);
+  createCanvas(1440, 900);
   colorMode(HSB, 360, 100, 100, 100)
   background(247.8, 32.11, 74.51, 3);
   
   fill(248, 0, 50, 100);
   textFont(myFont);
+  
+  // Callout texts
   textSize(18);
   text(calloutOne, 117, 430.5, 184, 93)
   text(calloutTwo, 177, 70, 201, 45)
   text(calloutThree, 1007, 83.5, 254, 76)
-  text(calloutFour, 1140, 228, 180, 164)
-  text(calloutFive, 1140, 335, 180, 100)
+  text(calloutFour, 1140, 228, 185, 164)
+  text(calloutFive, 1140, 325, 185, 100)
+  text(calloutSix, 1140, 414, 190, 100)
+  text(calloutSeven, 1140, 465, 185, 100)
   
+  // Title
+  textSize(32);
+  text(chartTitle, 117, 565, 200, 37)
+  text(howToRead, 1173, 647, 180, 37)
   
+  // Static circles and lines
   stroke(247.8, 32.11, 74.51, 20);
   strokeWeight(1)
   noFill();
   circle(circleCenter, height/2, 693);
   circle(circleCenter, height/2, 511);
+  line(412, 92.5, 545, 92.5)
+  line(840.5, 108.5, 972.5, 108.5)
+  line(1078, 279.5, 1116.5, 279.5)
+  line(117, 607.5, 303.5, 607.5)
+  line(1173.5, 686.5, 1324.5, 686.5)
   
   stroke(15.62, 39.34, 95.69, 20);
   strokeWeight(45);
