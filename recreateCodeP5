@@ -138,8 +138,9 @@ function draw() {
     ellipse(lulaSmokeX[i] + (lulaSmokeWidth[i]/2), lulaSmokeY[i], lulaSmokeWidth[i], lulaSmokeWidth[i])
   }
   pop();
-  
-  // Function for fill gradient
+}
+
+// Function for fill gradient
   function linearGradientFill(sX, sY, eX, eY, colorS, colorE) {
     let gradient = drawingContext.createLinearGradient(
       sX, sY, eX, eY
@@ -158,4 +159,3 @@ function draw() {
     gradient.addColorStop(1, colorE);
     drawingContext.strokeStyle = gradient;
   }
-}
