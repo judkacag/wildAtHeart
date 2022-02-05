@@ -1,6 +1,13 @@
-// Data
+// Variables
+var myFont;
 let circleCenter = 720;
+let calloutOne = "Well, you ain’t let me down yet, Sail’. That’s more than I can say for the rest of the world."
+let calloutTwo = "Sailor singing Love me tender to Lula on top of the car"
+let calloutThree = "The film starts with Sailor getting into jail for killing Bobby Ray Lemon"
+let calloutFour = "Sail’, how come you didn’t sing me Love me tender? You told me that was your favorite love song."
+let calloutFive = "I told you I’d only sing Love me tender to my wife."
 
+// Data
 let singX = [556, 898];
 let singY = [159, 294];
 let singWidth = [196, 158];
@@ -25,10 +32,24 @@ let lulaSmokeX = [803.3, 948.3, 969.3, 991, 969.3, 990.5, 974, 884, 873, 814, 47
 let lulaSmokeY = [168.9, 328.6, 396.6, 377.5, 396.6, 522, 578.5, 687, 694, 727, 685, 625, 581, 426.5, 400, 337, 263, 223.5];
 let lulaSmokeWidth = [41.7, 91.2,93.2, 39, 93.2, 42, 33, 38, 42, 42, 114, 56, 42, 53, 50, 46, 29, 21];
 
+function preload() {
+  myFont = loadFont('DancingScript-VariableFont_wght.ttf');
+}
+
 function setup() {
   createCanvas(1400, 900);
   colorMode(HSB, 360, 100, 100, 100)
   background(247.8, 32.11, 74.51, 3);
+  
+  fill(248, 0, 50, 100);
+  textFont(myFont);
+  textSize(18);
+  text(calloutOne, 117, 430.5, 184, 93)
+  text(calloutTwo, 177, 70, 201, 45)
+  text(calloutThree, 1007, 83.5, 254, 76)
+  text(calloutFour, 1140, 228, 180, 164)
+  text(calloutFive, 1140, 335, 180, 100)
+  
   
   stroke(247.8, 32.11, 74.51, 20);
   strokeWeight(1)
@@ -39,10 +60,11 @@ function setup() {
   stroke(15.62, 39.34, 95.69, 20);
   strokeWeight(45);
   circle(circleCenter, height/2, 600);
+  
 }
 
 function draw() {
-  
+  noLoop();
   // Violent scenes
   push(); 
   for (let i = 0; i < violanceX.length; i++) {
@@ -53,7 +75,6 @@ function draw() {
   }
   pop();
   
-  noLoop()
   // Sex scenes
   push();
   for (let i = 0; i < sexX.length; i++) {
