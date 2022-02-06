@@ -2,9 +2,6 @@
 var myFont;
 let table;
 let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJCkOYiAgU1rmbqfJCSVhakdL9-QkESvykjpe0JwK7lmtnlXNzp-Pg0ZsLleoFwvafvl2j6EvctzaI/pub?output=csv";
-let innerCircleWidth = 511;
-let middleCircleWidth = 600;
-let outerCircleWidth = 693;
 
 let calloutOne = "Well, you ain’t let me down yet, Sail’. That’s more than I can say for the rest of the world.";
 let calloutTwo = "Sailor singing Love me tender to Lula on top of the car";
@@ -14,7 +11,33 @@ let calloutFive = "- I told you I’d only sing Love me tender to my wife.";
 let calloutSix = "- I’d go to the far end of the world for you baby.";
 let calloutSeven = "- Rockin’ good news.";
 let chartTitle = "Who's smoking?";
+
+let innerCircleWidth = 511;
+let middleCircleWidth = 600;
+let outerCircleWidth = 693;
+let mapWidthMin = 15;
+let mapWidthMax = 150;
+let xPosBarChart = 117;
+let yPosBarChart = 635;
+
 let howToRead = "How to read?";
+let howToReadX = 1160;
+let howToReadY = 714;
+let howToReadInc = 19;
+let howToReadSize = 9;
+
+let xLabel = 1292;
+let yLabel = 760;
+let sizeLabel = 30;
+let sizeLabelIncrement = 13;
+
+// ----------------------------------------------------------
+
+// Data for cigarette count
+
+let cigaretteName = ['Sailor', 'Lula', 'Johnnie', 'Others', 'Perdita', 'Bobby', 'Juana', 'Marcello'];
+let cigaretteCount = [20, 17, 8, 3, 3, 2, 1, 1];
+let label = ['Sailor singing', 'Lula smoking', 'Sailor smoking', 'Others smoking', 'Sex', 'Violance']
 
 // ----------------------------------------------------------
 
@@ -63,13 +86,92 @@ function setup() {
   stroke(15.62, 39.34, 95.69, 20);
   strokeWeight(45);
   circle(width/2, height/2, middleCircleWidth);
+  
+  // How to read label - bubbles
+  push();
+  noStroke();
+  fill(1)
+  fill(247.8, 32.11, 74.51, 20);
+  ellipse(howToReadX, howToReadY, howToReadSize, howToReadSize)
+  linearGradientFill(
+    howToReadX - howToReadSize / 2, (howToReadY + howToReadInc) - howToReadSize / 2,
+    howToReadX + howToReadSize / 2, (howToReadY + howToReadInc) + howToReadSize / 2,
+    color(25.6, 15.45, 96.47, 80),
+    color(247.8, 32.11, 74.51, 80),
+    );
+  ellipse(howToReadX,  howToReadY + howToReadInc, howToReadSize, howToReadSize)
+  linearGradientFill(
+    howToReadX - howToReadSize / 2, (howToReadY + (howToReadInc * 2)) - howToReadSize / 2,
+    howToReadX + howToReadSize / 2, (howToReadY + (howToReadInc * 2)) + howToReadSize / 2,
+    color(247.8, 32.11, 74.51, 80),
+    color(15.62, 39.34, 95.69, 80),
+    );
+  ellipse(howToReadX, howToReadY + (howToReadInc * 2), howToReadSize, howToReadSize)
+  noFill();
+  stroke(1);
+  strokeWeight(howToReadSize / 2 - (howToReadSize / 2 * 0.65));
+  linearGradientStroke(
+    howToReadX - howToReadSize / 2, (howToReadY + (howToReadInc * 3)) - howToReadSize / 2,
+    howToReadX + howToReadSize / 2, (howToReadY + (howToReadInc * 3)) + howToReadSize / 2,
+    color(25.6, 15.45, 96.47, 80),
+    color(247.8, 32.11, 74.51, 80),
+    );
+  ellipse(howToReadX, howToReadY + (howToReadInc * 3), howToReadSize, howToReadSize)
+  noStroke();
+  fill(1);
+  fill(248, 0, 20, 80);
+  ellipse(howToReadX, howToReadY + (howToReadInc * 4), howToReadSize, howToReadSize);
+  rectMode(CENTER);
+  rect(howToReadX, howToReadY + (howToReadInc * 5), howToReadSize, howToReadSize);
+  
+  // How to read label - texts
+  for (let i = 0; i < label.length; i++) {
+    fill(248, 0, 50, 100);
+    textSize(12);
+    text(label[i], howToReadX + 55, howToReadY + 2, 80, 20);
+    howToReadY += howToReadInc;
+  }
+  
+  textAlign(CENTER);
+  text('Duration', xLabel, yLabel + 45, 100, 30);
+  textSize(8);
+  text('(Singing and smoking)', xLabel, yLabel + 60, 120, 30);
+  textSize(12);
+  textAlign(RIGHT);
+  text('Data & design: Judit Bekker', xLabel - sizeLabel, yLabel + 90, 150, 30);
+  
+  // How to read circle size demonstrator
+  for (let i = 0; i < 4; i++) {
+    noFill();
+    stroke(248, 0, 50, 25);
+    circle(xLabel, yLabel+ 3, sizeLabel);
+    sizeLabel += sizeLabelIncrement;
+    yLabel -= sizeLabelIncrement / 2;
+  }
+  pop();
 }
 
 // ----------------------------------------------------------
 
 function draw() {
   noLoop(); // this is just for the time being before I learn how to rotate the shapes around their own center
+  // Bar chart
+  push();
+  for (let i = 0; i < cigaretteName.length; i++) {
+    rectMode(CORNER);
+    noStroke();
+    fill(248, 0, 50, 100);
+    textSize(18);
+    text(cigaretteName[i], xPosBarChart, yPosBarChart, 50, 20);
+    textSize(12);
+    text(cigaretteCount[i], xPosBarChart + 70 + map(cigaretteCount[i], 1, 20, 10, 140) + 10, yPosBarChart + 4, 50, 20 )
+    fill(247.8, 32.11, 74.51, 60);
+    rect(xPosBarChart + 70, yPosBarChart + 8, map(cigaretteCount[i], 1, 20, 10, 140), 8, 50, 50);
+    yPosBarChart = yPosBarChart += 25;
+  }
+  pop();
   
+  // Radial chart
   push(); 
   // Violent scenes
   for (let r = 0; r < table.getRowCount(); r++) {
@@ -98,15 +200,15 @@ function draw() {
     }
   }
   
-  // Singing
+  // Singing - false different axis!
   for (let r = 0; r < table.getRowCount(); r++) {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
-    const duration = table.getNum(r, 6);
+    const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin * 2, mapWidthMax * 2);
     let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
     noStroke();
-    fill('rgba(137, 129, 190, 0.2)');
+    fill(247.8, 32.11, 74.51, 20);
     if (activity === 'sing') {
       ellipse(x, y, duration, duration);
     }
@@ -117,19 +219,19 @@ function draw() {
     const name = table.getString(r, 1);
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
-    const duration = table.getNum(r, 6);
+    const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin, mapWidthMax);
     let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
     noStroke();
-    fill(1);
+    fill(1)
     linearGradientFill(
-      x - (duration/ 4), y - (duration/4),
-      x + (duration/4), y + (duration/4),
+      x - (duration / 2), y - (duration / 2),
+      x + (duration / 2), y + (duration / 2),
       color(25.6, 15.45, 96.47, 80),
       color(247.8, 32.11, 74.51, 80),
     );
     if (activity === 'cigarette' && name === 'Sailor') {
-      ellipse(x, y, duration / 2, duration / 2);
+      ellipse(x, y, duration, duration);
     }
   }
   
@@ -138,20 +240,20 @@ function draw() {
     const name = table.getString(r, 1);
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
-    const duration = table.getNum(r, 6);
+    const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin, mapWidthMax);
     let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
     noFill();
-    strokeWeight(duration / 2 - (duration / 2 * 0.8));
+    strokeWeight(duration / 2 - (duration / 2 * 0.65));
     stroke(1);
     linearGradientStroke(
-      x - (duration/ 4), y - (duration/4),
-      x + (duration/4), y + (duration/4),
+      x - (duration / 2), y - (duration / 2),
+      x + (duration / 2), y + (duration / 2),
       color(25.6, 15.45, 96.47, 80),
       color(247.8, 32.11, 74.51, 80),
     );
     if (activity === 'cigarette' && name !== 'Sailor' && name !== 'Lula') {
-      ellipse(x, y, duration / 2, duration / 2);
+      ellipse(x, y, duration, duration);
     }
   }
   
@@ -160,19 +262,19 @@ function draw() {
     const name = table.getString(r, 1);
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
-    const duration = table.getNum(r, 6);
+    const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin, mapWidthMax);
     let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
     noStroke();
     fill(1);
     linearGradientFill(
-      x - (duration/ 4), y - (duration/4),
-      x + (duration/4), y + (duration/4),
+      x - (duration / 2), y - (duration / 2),
+      x + (duration / 2), y + (duration / 2),
       color(247.8, 32.11, 74.51, 60),
       color(15.62, 39.34, 95.69, 60),
     );
     if (activity === 'cigarette' && name === 'Lula') {
-      ellipse(x, y, duration / 2, duration / 2);
+      ellipse(x, y, duration, duration);
     }
   }
   pop();
