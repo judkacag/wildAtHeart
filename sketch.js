@@ -109,10 +109,10 @@ function setup() {
     );
   ellipse(howToReadX,  howToReadY + howToReadInc, howToReadSize, howToReadSize)
   linearGradientFill(
-    howToReadX - howToReadSize / 2, (howToReadY + (howToReadInc * 2)) - howToReadSize / 2,
-    howToReadX + howToReadSize / 2, (howToReadY + (howToReadInc * 2)) + howToReadSize / 2,
-    color(247.8, 32.11, 74.51, 80),
-    color(15.62, 39.34, 95.69, 80),
+    howToReadX - howToReadSize / 4, (howToReadY + (howToReadInc * 2)) - howToReadSize / 4,
+    howToReadX + howToReadSize / 4, (howToReadY + (howToReadInc * 2)) + howToReadSize / 4,
+    color(247.8, 32.11, 74.51, 60),
+    color(15.62, 39.34, 95.69, 60),
     );
   ellipse(howToReadX, howToReadY + (howToReadInc * 2), howToReadSize, howToReadSize)
   noFill();
@@ -269,24 +269,32 @@ function draw() {
     const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin * 2, mapWidthMax * 2);
     let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
-    stroke(1);
-    strokeWeight(3)
-    linearGradientStroke(
-      x - (duration / 4), y - (duration / 4),
-      x + (duration / 4), y + (duration / 4),
-      color(25.6, 15.45, 96.47, 100),
-      color(247.8, 32.11, 74.51, 100),
-    );
     if (activity === 'sing') {
-      for (let i = 0; i <= 360; i += 6) {
+      for (let r = 0; r < table.getRowCount(); r++) {
+        noStroke();
+        fill(1);
+        fill(249.2, 5.4, 94.9);
+        ellipse(x, y, duration, duration);
+      }
+    }
+    if (activity === 'sing') {
+      for (let i = 0; i <= 360; i += 3) {
+        noFill();
+        stroke(1);
+        strokeWeight(2)
+        linearGradientStroke(
+          x - (duration / 4), y - (duration / 4),
+          x + (duration/1.5), y + (duration / 8),
+          color(25.6, 15.45, 96.47, 100),
+          color(247.8, 32.11, 74.51, 100)
+        )
         let rad = radians(i);
         xLineS = x + (duration / 2 * cos(rad));
         yLineS = y + (duration / 2 * sin(rad));
         xLineE = x - (duration / 2 * cos(rad));
         yLineE = y - (duration / 2 * sin(rad)*-1);
         line(xLineS, yLineS, xLineE, yLineE);
-  }
-      // ellipse(x, y, duration, duration);
+      }
     }
   }
   
@@ -344,8 +352,8 @@ function draw() {
     noStroke();
     fill(1);
     linearGradientFill(
-      x - (duration / 2), y - (duration / 2),
-      x + (duration / 2), y + (duration / 2),
+      x - (duration / 4), y - (duration / 4),
+      x + (duration / 4), y + (duration / 4),
       color(247.8, 32.11, 74.51, 60),
       color(15.62, 39.34, 95.69, 60),
     );
