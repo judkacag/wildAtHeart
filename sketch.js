@@ -15,7 +15,7 @@ let chartTitle = "Who's smoking?";
 let innerCircleWidth = 511;
 let middleCircleWidth = 600;
 let outerCircleWidth = 693;
-let titleCircleWidth = 720;
+let titleCircleWidth = 770;
 let mapWidthMin = 15;
 let mapWidthMax = 150;
 let xPosBarChart = 117;
@@ -34,7 +34,9 @@ let sizeLabelIncrement = 13;
 
 let title = 'Wild at heart';
 let titleArray = [];
-let theta = 0;
+let title2 = 'weird on top';
+let titleArray2 = [];
+let theta = 195;
 
 
 // ----------------------------------------------------------
@@ -157,7 +159,7 @@ function setup() {
   pop();
   
   titleArray = title.split("");
-  print(titleArray);
+  titleArray2 = title2.split("");
 }
 
 // ----------------------------------------------------------
@@ -165,19 +167,55 @@ function setup() {
 function draw() {
   noLoop(); // this is just for the time being before I learn how to rotate the shapes around their own center
   
-  /* Title
+  // Title
   push();
   noStroke();
   fill(248, 0, 50, 100);
-  textSize(24);
-  translate(width/2, height/2)
-  let titleX = titleCircleWidth / 2 * cos(theta)
-  let titleY = titleCircleWidth / 2 * sin(theta)
+  textSize(48);
+  textAlign(CENTER);
+  translate(width / 2, height / 2);
   for (let i = 0; i < titleArray.length; i++) {
-    rotate(radians(-45));
-    text(titleArray[i], titleX, titleY);
+    if (titleArray[i] === 'i') {
+      rotate(QUARTER_PI/12);
+    } else if (titleArray[i] === 'l') {
+      rotate(QUARTER_PI/20);
+    } else if (titleArray[i] === 'r') {
+      rotate(QUARTER_PI/15) 
+    } else {
+      rotate(QUARTER_PI/16);
+    }
+    push();
+    translate(titleCircleWidth/ 2 * cos(theta)*-1, titleCircleWidth/2 * sin(theta)*-1);
+    rotate(radians(-74)); // rotation for individual letter
+    text(titleArray[i], 0, 0);
+    pop();
   }
-  pop(); */
+  pop();
+  
+  // Title 2
+  push();
+  noStroke();
+  fill(248, 0, 50, 100);
+  textSize(48);
+  textAlign(CENTER);
+  translate(width / 2, height / 2);
+  for (let i = 0; i < titleArray2.length; i++) {
+    if (titleArray2[i] === 'i') {
+      rotate(QUARTER_PI/19);
+    } else if (titleArray2[i] === 'e') {
+      rotate(QUARTER_PI/14)
+    } else if (titleArray2[i] === 'r') {
+      rotate(QUARTER_PI/21)
+    } else {
+      rotate(QUARTER_PI/16);
+    }
+    push();
+    translate(titleCircleWidth/ 2 * cos(theta), titleCircleWidth/2 * sin(theta));
+    rotate(radians(-256)); // rotation for individual letter
+    text(titleArray2[i], 0, 0);
+    pop();
+  }
+  pop();
   
   // Bar chart
   push();
