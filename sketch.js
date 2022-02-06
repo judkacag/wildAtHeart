@@ -15,6 +15,7 @@ let chartTitle = "Who's smoking?";
 let innerCircleWidth = 511;
 let middleCircleWidth = 600;
 let outerCircleWidth = 693;
+let titleCircleWidth = 720;
 let mapWidthMin = 15;
 let mapWidthMax = 150;
 let xPosBarChart = 117;
@@ -31,13 +32,18 @@ let yLabel = 760;
 let sizeLabel = 30;
 let sizeLabelIncrement = 13;
 
+let title = 'Wild at heart';
+let titleArray = [];
+let theta = 0;
+
+
 // ----------------------------------------------------------
 
 // Data for cigarette count
 
 let cigaretteName = ['Sailor', 'Lula', 'Johnnie', 'Others', 'Perdita', 'Bobby', 'Juana', 'Marcello'];
 let cigaretteCount = [20, 17, 8, 3, 3, 2, 1, 1];
-let label = ['Sailor singing', 'Lula smoking', 'Sailor smoking', 'Others smoking', 'Sex', 'Violance']
+let label = ['Sailor singing', 'Sailor smoking', 'Lula smoking', 'Others smoking', 'Sex', 'Violance']
 
 // ----------------------------------------------------------
 
@@ -149,12 +155,30 @@ function setup() {
     yLabel -= sizeLabelIncrement / 2;
   }
   pop();
+  
+  titleArray = title.split("");
+  print(titleArray);
 }
 
 // ----------------------------------------------------------
 
 function draw() {
   noLoop(); // this is just for the time being before I learn how to rotate the shapes around their own center
+  
+  /* Title
+  push();
+  noStroke();
+  fill(248, 0, 50, 100);
+  textSize(24);
+  translate(width/2, height/2)
+  let titleX = titleCircleWidth / 2 * cos(theta)
+  let titleY = titleCircleWidth / 2 * sin(theta)
+  for (let i = 0; i < titleArray.length; i++) {
+    rotate(radians(-45));
+    text(titleArray[i], titleX, titleY);
+  }
+  pop(); */
+  
   // Bar chart
   push();
   for (let i = 0; i < cigaretteName.length; i++) {
