@@ -1,7 +1,10 @@
-// Variables
-var myFont;
+// General variables
+
+let myFont;
 let table;
 let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJCkOYiAgU1rmbqfJCSVhakdL9-QkESvykjpe0JwK7lmtnlXNzp-Pg0ZsLleoFwvafvl2j6EvctzaI/pub?output=csv";
+
+// Static text variables
 
 let calloutOne = "Well, you ain’t let me down yet, Sail’. That’s more than I can say for the rest of the world.";
 let calloutTwo = "Sailor singing Love me tender to Lula on top of the car";
@@ -12,30 +15,41 @@ let calloutSix = "- I’d go to the far end of the world for you baby.";
 let calloutSeven = "- Rockin’ good news.";
 let chartTitle = "Who's smoking?";
 
+// Circle size variables
+
 let innerCircleWidth = 511;
 let middleCircleWidth = 600;
 let outerCircleWidth = 693;
 let titleCircleWidth = 770;
+let titleInnerCircleWidth = 455;
+
+// Bar chart variables
+
 let mapWidthMin = 15;
 let mapWidthMax = 150;
 let xPosBarChart = 117;
 let yPosBarChart = 635;
+
+// How to read variables
 
 let howToRead = "How to read?";
 let howToReadX = 1160;
 let howToReadY = 714;
 let howToReadInc = 19;
 let howToReadSize = 9;
-
 let xLabel = 1292;
 let yLabel = 760;
 let sizeLabel = 30;
 let sizeLabelIncrement = 13;
 
+// Title variables
+
 let title = 'Wild at heart';
 let titleArray = [];
 let title2 = 'weird on top';
 let titleArray2 = [];
+let innerCircleText = 'a film by David Lynch';
+let innerCircleTextArray = [];
 let theta = 195;
 
 
@@ -65,6 +79,7 @@ function setup() {
   textFont(myFont);
   
   // Callout texts
+  
   textSize(18);
   text(calloutOne, 117, 430.5, 184, 93)
   text(calloutTwo, 177, 70, 201, 45)
@@ -74,12 +89,8 @@ function setup() {
   text(calloutSix, 1140, 414, 190, 100)
   text(calloutSeven, 1140, 465, 185, 100)
   
-  // Title
-  textSize(32);
-  text(chartTitle, 117, 565, 200, 37)
-  text(howToRead, 1173, 647, 180, 37)
-  
   // Static circles and lines
+  
   stroke(247.8, 32.11, 74.51, 20);
   strokeWeight(1)
   noFill();
@@ -95,12 +106,28 @@ function setup() {
   strokeWeight(45);
   circle(width/2, height/2, middleCircleWidth);
   
-  // How to read label - bubbles
+  // ----------------------------------------------------------
+  
+  // How to read section
+  
+  // How to read title
+  
+  noStroke();
+  fill(248, 0, 50, 100);
+  textSize(32);
+  text(chartTitle, 117, 565, 200, 37)
+  text(howToRead, 1173, 647, 180, 37)
+  
+  // How to read bubbles
+  
+  // Sailor sing bubble
   push();
   noStroke();
   fill(1)
   fill(247.8, 32.11, 74.51, 20);
   ellipse(howToReadX, howToReadY, howToReadSize, howToReadSize)
+  
+  // Sailor smoke bubble
   linearGradientFill(
     howToReadX - howToReadSize / 2, (howToReadY + howToReadInc) - howToReadSize / 2,
     howToReadX + howToReadSize / 2, (howToReadY + howToReadInc) + howToReadSize / 2,
@@ -108,6 +135,8 @@ function setup() {
     color(247.8, 32.11, 74.51, 80),
     );
   ellipse(howToReadX,  howToReadY + howToReadInc, howToReadSize, howToReadSize)
+  
+  // Lula smoke bubble
   linearGradientFill(
     howToReadX - howToReadSize / 4, (howToReadY + (howToReadInc * 2)) - howToReadSize / 4,
     howToReadX + howToReadSize / 4, (howToReadY + (howToReadInc * 2)) + howToReadSize / 4,
@@ -115,6 +144,8 @@ function setup() {
     color(15.62, 39.34, 95.69, 60),
     );
   ellipse(howToReadX, howToReadY + (howToReadInc * 2), howToReadSize, howToReadSize)
+  
+  // Others smoke bubble
   noFill();
   stroke(1);
   strokeWeight(howToReadSize / 2 - (howToReadSize / 2 * 0.65));
@@ -125,14 +156,19 @@ function setup() {
     color(247.8, 32.11, 74.51, 80),
     );
   ellipse(howToReadX, howToReadY + (howToReadInc * 3), howToReadSize, howToReadSize)
+  
+  // Sex scenes bubble
   noStroke();
   fill(1);
-  fill(248, 0, 20, 80);
+  fill(248, 0, 50, 100);
   ellipse(howToReadX, howToReadY + (howToReadInc * 4), howToReadSize, howToReadSize);
+  
+  // Violent scenes bubble
   rectMode(CENTER);
   rect(howToReadX, howToReadY + (howToReadInc * 5), howToReadSize, howToReadSize);
   
   // How to read label - texts
+  
   for (let i = 0; i < label.length; i++) {
     fill(248, 0, 50, 100);
     textSize(12);
@@ -149,6 +185,7 @@ function setup() {
   text('Data & design: Judit Bekker', xLabel - sizeLabel, yLabel + 90, 150, 30);
   
   // How to read circle size demonstrator
+  
   for (let i = 0; i < 4; i++) {
     noFill();
     stroke(248, 0, 50, 25);
@@ -158,16 +195,20 @@ function setup() {
   }
   pop();
   
+  // Breaking down the circular title strings to an array
+  
   titleArray = title.split("");
   titleArray2 = title2.split("");
+  innerCircleTextArray = innerCircleText.split("");
 }
 
 // ----------------------------------------------------------
 
 function draw() {
-  noLoop(); // this is just for the time being before I learn how to rotate the shapes around their own center
+  noLoop(); // temporary
   
-  // Title
+  // Wild at heart title
+  
   push();
   noStroke();
   fill(248, 0, 50, 100);
@@ -175,6 +216,8 @@ function draw() {
   textAlign(CENTER);
   translate(width / 2, height / 2);
   for (let i = 0; i < titleArray.length; i++) {
+    // This if is needed for kerning the letters individually when needed
+    // The rotate function controls how close the letters are to each other
     if (titleArray[i] === 'i') {
       rotate(QUARTER_PI/12);
     } else if (titleArray[i] === 'l') {
@@ -185,14 +228,36 @@ function draw() {
       rotate(QUARTER_PI/16);
     }
     push();
+    // This section controls the rotation of the individual letters
     translate(titleCircleWidth/ 2 * cos(theta)*-1, titleCircleWidth/2 * sin(theta)*-1);
-    rotate(radians(-74)); // rotation for individual letter
+    rotate(radians(-74));
     text(titleArray[i], 0, 0);
     pop();
   }
   pop();
   
-  // Title 2
+  // a film by David Lynch callout
+  
+  push();
+  noStroke();
+  fill(248, 0, 50, 100);
+  textSize(18);
+  textAlign(CENTER);
+  translate(width / 2, height / 2);
+  for (let i = 0; i < innerCircleTextArray.length; i++) {
+    // The rotate function controls how close the letters are to each other
+    rotate(QUARTER_PI/24);
+    push();
+    // This section controls the rotation of the individual letters
+    translate(titleInnerCircleWidth/ 2 * cos(theta)*-1, titleInnerCircleWidth/2 * sin(theta)*-1);
+    rotate(radians(-74));
+    text(innerCircleTextArray[i], 0, 0);
+    pop();
+  }
+  pop();
+  
+  // Weird on top title
+  
   push();
   noStroke();
   fill(248, 0, 50, 100);
@@ -200,6 +265,8 @@ function draw() {
   textAlign(CENTER);
   translate(width / 2, height / 2);
   for (let i = 0; i < titleArray2.length; i++) {
+    // This if is needed for kerning the letters individually when needed
+    // The rotate function controls how close the letters are to each other
     if (titleArray2[i] === 'i') {
       rotate(QUARTER_PI/19);
     } else if (titleArray2[i] === 'e') {
@@ -210,14 +277,16 @@ function draw() {
       rotate(QUARTER_PI/16);
     }
     push();
+    // This section controls the rotation of the individual letters
     translate(titleCircleWidth/ 2 * cos(theta), titleCircleWidth/2 * sin(theta));
-    rotate(radians(-256)); // rotation for individual letter
+    rotate(radians(-256));
     text(titleArray2[i], 0, 0);
     pop();
   }
   pop();
   
   // Bar chart
+  
   push();
   for (let i = 0; i < cigaretteName.length; i++) {
     rectMode(CORNER);
@@ -226,6 +295,7 @@ function draw() {
     textSize(18);
     text(cigaretteName[i], xPosBarChart, yPosBarChart, 50, 20);
     textSize(12);
+    // Mapping the original cigarette count to a bigger range to make the bars wider
     text(cigaretteCount[i], xPosBarChart + 70 + map(cigaretteCount[i], 1, 20, 10, 140) + 10, yPosBarChart + 4, 50, 20 )
     fill(247.8, 32.11, 74.51, 60);
     rect(xPosBarChart + 70, yPosBarChart + 8, map(cigaretteCount[i], 1, 20, 10, 140), 8, 50, 50);
@@ -234,15 +304,17 @@ function draw() {
   pop();
   
   // Radial chart
-  push(); 
+  
   // Violent scenes
+  
+  push(); 
   for (let r = 0; r < table.getRowCount(); r++) {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     let x = outerCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = outerCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
     noStroke();
-    fill(248, 0, 20, 80);
+    fill(248, 0, 50, 100);
     rectMode(CENTER);
     if (activity === 'brutality') {
       rect(x, y, 8, 8)
@@ -250,25 +322,28 @@ function draw() {
   }
   
   // Sex scenes
+  
   for (let r = 0; r < table.getRowCount(); r++) {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     let x = innerCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = innerCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
     noStroke();
-    fill(248, 0, 20, 80);
+    fill(248, 0, 50, 100);
     if (activity === 'sex') {
       ellipse(x, y, 10, 10);
     }
   }
   
-  // Singing - false different axis!
+  // Singing scenes - false different axis!
+  
   for (let r = 0; r < table.getRowCount(); r++) {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin * 2, mapWidthMax * 2);
     let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
     let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    // This if creates the underlay circle
     if (activity === 'sing') {
       for (let r = 0; r < table.getRowCount(); r++) {
         noStroke();
@@ -277,6 +352,7 @@ function draw() {
         ellipse(x, y, duration, duration);
       }
     }
+    // This if creates the lines on top of the circle above
     if (activity === 'sing') {
       for (let i = 0; i <= 360; i += 3) {
         noFill();
@@ -284,13 +360,13 @@ function draw() {
         strokeWeight(2)
         linearGradientStroke(
           x - (duration / 4), y - (duration / 4),
-          x + (duration/1.5), y + (duration / 8),
-          color(25.6, 15.45, 96.47, 100),
-          color(247.8, 32.11, 74.51, 100)
+          x + (duration), y + (duration),
+          color(25.6, 15.45, 96.47, 85),
+          color(247.8, 32.11, 74.51, 85)
         )
         let rad = radians(i);
-        xLineS = x + (duration / 2 * cos(rad));
-        yLineS = y + (duration / 2 * sin(rad));
+        xLineS = x + (duration / 2 * cos(rad - radians(90)));
+        yLineS = y + (duration / 2 * sin(rad - radians(90)));
         xLineE = x - (duration / 2 * cos(rad));
         yLineE = y - (duration / 2 * sin(rad)*-1);
         line(xLineS, yLineS, xLineE, yLineE);
@@ -299,6 +375,7 @@ function draw() {
   }
   
   // Sailor smoking
+  
   for (let r = 0; r < table.getRowCount(); r++) {
     const name = table.getString(r, 1);
     const activity = table.getString(r, 2);
@@ -320,6 +397,7 @@ function draw() {
   }
   
   // Others smoking
+  
   for (let r = 0; r < table.getRowCount(); r++) {
     const name = table.getString(r, 1);
     const activity = table.getString(r, 2);
@@ -342,6 +420,7 @@ function draw() {
   }
   
   // Lula smoking
+  
   for (let r = 0; r < table.getRowCount(); r++) {
     const name = table.getString(r, 1);
     const activity = table.getString(r, 2);
@@ -373,6 +452,7 @@ function draw() {
 // ----------------------------------------------------------
 
 // Function for fill gradient
+
   function linearGradientFill(sX, sY, eX, eY, colorS, colorE) {
     let gradient = drawingContext.createLinearGradient(
       sX, sY, eX, eY
@@ -383,6 +463,7 @@ function draw() {
   }
   
   // Function for stroke gradient
+
   function linearGradientStroke(sX, sY, eX, eY, colorS, colorE) {
     let gradient = drawingContext.createLinearGradient(
       sX, sY, eX, eY
