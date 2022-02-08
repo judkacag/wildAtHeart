@@ -73,7 +73,7 @@ function preload() {
 function setup() {
   createCanvas(1440, 900);
   colorMode(HSB, 360, 100, 100, 100)
-  background(240, 0.8, 97.6);
+  background(240, 1.18, 99.6);
   
   fill(248, 0, 50, 100);
   textFont(myFont);
