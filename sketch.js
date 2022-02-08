@@ -73,7 +73,7 @@ function preload() {
 function setup() {
   createCanvas(1440, 900);
   colorMode(HSB, 360, 100, 100, 100)
-  background(247.8, 32.11, 74.51, 3);
+  background(240, 0.8, 97.6);
   
   fill(248, 0, 50, 100);
   textFont(myFont);
@@ -181,8 +181,8 @@ function setup() {
   textSize(8);
   text('(Singing and smoking)', xLabel, yLabel + 60, 120, 30);
   textSize(12);
-  textAlign(RIGHT);
-  text('Data & design: Judit Bekker', xLabel - sizeLabel, yLabel + 90, 150, 30);
+  // textAlign(RIGHT);
+  // text('Data & design: Judit Bekker', xLabel - sizeLabel, yLabel + 90, 150, 30);
   
   // How to read circle size demonstrator
   
@@ -311,8 +311,8 @@ function draw() {
   for (let r = 0; r < table.getRowCount(); r++) {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
-    let x = outerCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
-    let y = outerCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    let x = outerCircleWidth / 2 * cos(radians(angle)) + width/2;
+    let y = outerCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(248, 0, 50, 100);
     rectMode(CENTER);
@@ -326,8 +326,8 @@ function draw() {
   for (let r = 0; r < table.getRowCount(); r++) {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
-    let x = innerCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
-    let y = innerCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    let x = innerCircleWidth / 2 * cos(radians(angle)) + width/2;
+    let y = innerCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(248, 0, 50, 100);
     if (activity === 'sex') {
@@ -341,8 +341,8 @@ function draw() {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin * 2, mapWidthMax * 2);
-    let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
-    let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    let x = middleCircleWidth / 2 * cos(radians(angle)) + width/2;
+    let y = middleCircleWidth / 2 * sin(radians(angle)) + height/2;
     // This if creates the underlay circle
     if (activity === 'sing') {
       for (let r = 0; r < table.getRowCount(); r++) {
@@ -381,8 +381,8 @@ function draw() {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin, mapWidthMax);
-    let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
-    let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    let x = middleCircleWidth / 2 * cos(radians(angle)) + width/2;
+    let y = middleCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(1)
     linearGradientFill(
@@ -403,8 +403,8 @@ function draw() {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin, mapWidthMax);
-    let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
-    let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    let x = middleCircleWidth / 2 * cos(radians(angle)) + width/2;
+    let y = middleCircleWidth / 2 * sin(radians(angle)) + height/2;
     noFill();
     strokeWeight(duration / 2 - (duration / 2 * 0.65));
     stroke(1);
@@ -426,8 +426,8 @@ function draw() {
     const activity = table.getString(r, 2);
     const angle = table.getNum(r, 12);
     const duration = map(table.getNum(r, 6), 1, 294, mapWidthMin, mapWidthMax);
-    let x = middleCircleWidth / 2 * Math.cos(radians(angle)) + width/2;
-    let y = middleCircleWidth / 2 * Math.sin(radians(angle)) + height/2;
+    let x = middleCircleWidth / 2 * cos(radians(angle)) + width/2;
+    let y = middleCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(1);
     linearGradientFill(
@@ -453,22 +453,30 @@ function draw() {
 
 // Function for fill gradient
 
-  function linearGradientFill(sX, sY, eX, eY, colorS, colorE) {
-    let gradient = drawingContext.createLinearGradient(
-      sX, sY, eX, eY
-    );
-    gradient.addColorStop(0, colorS);
-    gradient.addColorStop(1, colorE);
-    drawingContext.fillStyle = gradient;
-  }
+function linearGradientFill(sX, sY, eX, eY, colorS, colorE) {
+  let gradient = drawingContext.createLinearGradient(
+    sX, sY, eX, eY
+  );
+  gradient.addColorStop(0, colorS);
+  gradient.addColorStop(1, colorE);
+  drawingContext.fillStyle = gradient;
+}
   
-  // Function for stroke gradient
+// Function for stroke gradient
 
-  function linearGradientStroke(sX, sY, eX, eY, colorS, colorE) {
-    let gradient = drawingContext.createLinearGradient(
-      sX, sY, eX, eY
-    );
-    gradient.addColorStop(0, colorS);
-    gradient.addColorStop(1, colorE);
-    drawingContext.strokeStyle = gradient;
+function linearGradientStroke(sX, sY, eX, eY, colorS, colorE) {
+  let gradient = drawingContext.createLinearGradient(
+    sX, sY, eX, eY
+  );
+  gradient.addColorStop(0, colorS);
+  gradient.addColorStop(1, colorE);
+  drawingContext.strokeStyle = gradient;
+}
+
+// Pressing the enter will download as png
+
+function keyPressed() {
+  if (keyCode === 13) {
+    saveCanvas('wildAtHeart', 'png');
   }
+}
