@@ -75,7 +75,7 @@ function setup() {
   colorMode(HSB, 360, 100, 100, 100)
   background(240, 1.18, 99.6);
   
-  fill(248, 0, 50, 100);
+  fill(260, 0, 20, 100);
   textFont(myFont);
   
   // Callout texts
@@ -113,7 +113,7 @@ function setup() {
   // How to read title
   
   noStroke();
-  fill(248, 0, 50, 100);
+  fill(260, 0, 20, 100);
   textSize(32);
   text(chartTitle, 117, 565, 200, 37)
   text(howToRead, 1173, 647, 180, 37)
@@ -170,7 +170,7 @@ function setup() {
   // How to read label - texts
   
   for (let i = 0; i < label.length; i++) {
-    fill(248, 0, 50, 100);
+    fill(260, 0, 20, 100);
     textSize(12);
     text(label[i], howToReadX + 55, howToReadY + 2, 80, 20);
     howToReadY += howToReadInc;
@@ -188,7 +188,7 @@ function setup() {
   
   for (let i = 0; i < 4; i++) {
     noFill();
-    stroke(248, 0, 50, 25);
+    stroke(260, 0, 20, 20);
     circle(xLabel, yLabel+ 3, sizeLabel);
     sizeLabel += sizeLabelIncrement;
     yLabel -= sizeLabelIncrement / 2;
@@ -211,7 +211,7 @@ function draw() {
   
   push();
   noStroke();
-  fill(248, 0, 50, 100);
+  fill(260, 0, 20, 100);
   textSize(48);
   textAlign(CENTER);
   translate(width / 2, height / 2);
@@ -240,7 +240,7 @@ function draw() {
   
   push();
   noStroke();
-  fill(248, 0, 50, 100);
+  fill(260, 0, 20, 100);
   textSize(18);
   textAlign(CENTER);
   translate(width / 2, height / 2);
@@ -260,7 +260,7 @@ function draw() {
   
   push();
   noStroke();
-  fill(248, 0, 50, 100);
+  fill(260, 0, 20, 100);
   textSize(48);
   textAlign(CENTER);
   translate(width / 2, height / 2);
@@ -291,7 +291,7 @@ function draw() {
   for (let i = 0; i < cigaretteName.length; i++) {
     rectMode(CORNER);
     noStroke();
-    fill(248, 0, 50, 100);
+    fill(260, 0, 20, 100);
     textSize(18);
     text(cigaretteName[i], xPosBarChart, yPosBarChart, 50, 20);
     textSize(12);
