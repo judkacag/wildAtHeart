@@ -27,20 +27,20 @@ let titleInnerCircleWidth = 455;
 
 let mapWidthMin = 15;
 let mapWidthMax = 150;
-let xPosBarChart = 117;
-let yPosBarChart = 635;
+let xPosBarChart = 0;
+let yPosBarChart = 0;
 
 // How to read variables
 
-let howToRead = "How to read?";
-let howToReadX = 1160;
-let howToReadY = 714;
-let howToReadInc = 19;
-let howToReadSize = 9;
-let xLabel = 1292;
-let yLabel = 760;
-let sizeLabel = 30;
-let sizeLabelIncrement = 13;
+let howToRead = "";
+let howToReadX = 0;
+let howToReadY = 0;
+let howToReadInc = 0;
+let howToReadSize = 0;
+let xLabel = 0;
+let yLabel = 0;
+let sizeLabel = 0;
+let sizeLabelIncrement = 0;
 
 // Title variables
 
@@ -51,6 +51,17 @@ let titleArray2 = [];
 let innerCircleText = 'a film by David Lynch';
 let innerCircleTextArray = [];
 let theta = 195;
+
+// Breaking down the circular title strings to an array
+  
+titleArray = title.split("");
+titleArray2 = title2.split("");
+innerCircleTextArray = innerCircleText.split("");
+
+// Sex pulse
+
+var diam = 5;
+var change = 0.05;
 
 
 // ----------------------------------------------------------
@@ -73,16 +84,32 @@ function preload() {
 function setup() {
   createCanvas(1440, 900);
   colorMode(HSB, 360, 100, 100, 100)
-  background(240, 1.18, 99.6);
-  
-  fill(260, 0, 30.2, 100);
   textFont(myFont);
+}
+// ----------------------------------------------------------
+
+function draw() {
+  fill(260, 0, 30.2, 100);
+  background(240, 1.18, 99.6);
+  howToRead = "How to read?";
+  howToReadX = 1160;
+  howToReadY = 714;
+  howToReadInc = 19;
+  howToReadSize = 9;
+  xLabel = 1292;
+  yLabel = 760;
+  sizeLabel = 30;
+  sizeLabelIncrement = 13;
+  xPosBarChart = 117;
+  yPosBarChart = 635;
   
   // Callout texts
   
   textSize(18);
+  textAlign(RIGHT);
   text(calloutOne, 117, 430.5, 184, 93)
-  text(calloutTwo, 177, 70, 201, 45)
+  text(calloutTwo, 177, 70, 201, 45);
+  textAlign(LEFT);
   text(calloutThree, 1007, 83.5, 254, 76)
   text(calloutFour, 1140, 228, 185, 164)
   text(calloutFive, 1140, 325, 185, 100)
@@ -97,7 +124,7 @@ function setup() {
   circle(width/2, height/2, outerCircleWidth);
   circle(width/2, height/2, innerCircleWidth);
   line(412, 92.5, 545, 92.5)
-  line(840.5, 108.5, 972.5, 108.5)
+  line(860.5, 108.5, 967.5, 108.5)
   line(1078, 279.5, 1116.5, 279.5)
   line(117, 607.5, 303.5, 607.5)
   line(1173.5, 686.5, 1324.5, 686.5)
@@ -114,6 +141,7 @@ function setup() {
   
   noStroke();
   fill(260, 0, 30.2, 100);
+  textAlign(LEFT);
   textSize(32);
   text(chartTitle, 117, 565, 200, 37)
   text(howToRead, 1173, 647, 180, 37)
@@ -172,40 +200,36 @@ function setup() {
   for (let i = 0; i < label.length; i++) {
     fill(260, 0, 30.2, 100);
     textSize(12);
+    textAlign(LEFT);
     text(label[i], howToReadX + 55, howToReadY + 2, 80, 20);
     howToReadY += howToReadInc;
   }
   
+  howToReadY = 714;
+  
   textAlign(CENTER);
+  textSize(12);
   text('Duration', xLabel, yLabel + 45, 100, 30);
   textSize(8);
   text('(Singing and smoking)', xLabel, yLabel + 60, 120, 30);
   textSize(12);
-  // textAlign(RIGHT);
-  // text('Data & design: Judit Bekker', xLabel - sizeLabel, yLabel + 90, 150, 30);
+  textAlign(RIGHT);
+  text('Data & design: Judit Bekker', xLabel - sizeLabel, yLabel + 90, 150, 30);
+  
   
   // How to read circle size demonstrator
-  
+  push();
+  noFill();
   for (let i = 0; i < 4; i++) {
-    noFill();
+    noFill(100);
     stroke(260, 0, 30.2, 20);
+    strokeWeight(1);
     circle(xLabel, yLabel+ 3, sizeLabel);
     sizeLabel += sizeLabelIncrement;
     yLabel -= sizeLabelIncrement / 2;
   }
   pop();
-  
-  // Breaking down the circular title strings to an array
-  
-  titleArray = title.split("");
-  titleArray2 = title2.split("");
-  innerCircleTextArray = innerCircleText.split("");
-}
-
-// ----------------------------------------------------------
-
-function draw() {
-  noLoop(); // temporary
+  pop(); 
   
   // Wild at heart title
   
@@ -315,9 +339,13 @@ function draw() {
     let y = outerCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(248, 0, 50, 100);
-    rectMode(CENTER);
     if (activity === 'brutality') {
-      rect(x, y, 8, 8)
+      push();
+      rectMode(CENTER);
+      translate(x, y);
+      rotate(frameCount * 0.05);
+      rect(0, 0, 9, 9);
+      pop();
     }
   }
   
@@ -331,7 +359,13 @@ function draw() {
     noStroke();
     fill(248, 0, 50, 100);
     if (activity === 'sex') {
-      ellipse(x, y, 10, 10);
+      diam += change;
+      if (diam > 12){
+		change = -change;
+      } else if (diam < 5){ 
+        change = -change;
+      }
+      ellipse(x, y, diam, diam);
     }
   }
   
@@ -346,10 +380,14 @@ function draw() {
     // This if creates the underlay circle
     if (activity === 'sing') {
       for (let r = 0; r < table.getRowCount(); r++) {
+        push();
         noStroke();
         fill(1);
         fill(249.2, 5.4, 94.9);
-        ellipse(x, y, duration, duration);
+        translate(x, y);
+        ellipse(0, 0, duration, duration);
+        pop();
+
       }
     }
     // This if creates the lines on top of the circle above
@@ -441,7 +479,7 @@ function draw() {
     }
   }
   pop();
- 
+
   /* This is a trial point to check placement
   stroke('red');
   let x = 600 / 2 * Math.cos(radians(-90)) + width/2;
