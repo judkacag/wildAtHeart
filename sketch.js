@@ -188,7 +188,7 @@ function draw() {
   // Sex scenes bubble
   noStroke();
   fill(1);
-  fill(248, 0, 50, 100);
+  fill(260, 0, 45, 100);
   ellipse(howToReadX, howToReadY + (howToReadInc * 4), howToReadSize, howToReadSize);
   
   // Violent scenes bubble
@@ -338,7 +338,7 @@ function draw() {
     let x = outerCircleWidth / 2 * cos(radians(angle)) + width/2;
     let y = outerCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
-    fill(248, 0, 50, 100);
+    fill(260, 0, 45, 100);
     if (activity === 'brutality') {
       push();
       rectMode(CENTER);
@@ -357,7 +357,7 @@ function draw() {
     let x = innerCircleWidth / 2 * cos(radians(angle)) + width/2;
     let y = innerCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
-    fill(248, 0, 50, 100);
+    fill(260, 0, 45, 100);
     if (activity === 'sex') {
       diam += change;
       if (diam > 12){
