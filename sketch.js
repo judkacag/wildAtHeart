@@ -92,7 +92,7 @@ function draw() {
   fill(260, 0, 45, 100);
   background(240, 1.18, 99.6);
   howToRead = "How to read?";
-  howToReadX = 1160;
+  howToReadX = 1155;
   howToReadY = 714;
   howToReadInc = 19;
   howToReadSize = 9;
@@ -199,7 +199,7 @@ function draw() {
   
   for (let i = 0; i < label.length; i++) {
     fill(260, 0, 45, 100);
-    textSize(12);
+    textSize(13);
     textAlign(LEFT);
     text(label[i], howToReadX + 55, howToReadY + 2, 80, 20);
     howToReadY += howToReadInc;
@@ -392,22 +392,26 @@ function draw() {
     }
     // This if creates the lines on top of the circle above
     if (activity === 'sing') {
-      for (let i = 0; i <= 360; i += 3) {
+      for (let i = 0; i <= 360; i += 3.5) {
         noFill();
         stroke(1);
-        strokeWeight(2)
+        strokeWeight(1.5)
+        push();
+        translate(x, y);
+        rotate(frameCount * 0.01);
         linearGradientStroke(
-          x - (duration / 4), y - (duration / 4),
-          x + (duration), y + (duration),
+          0 - (duration / 4), 0 - (duration / 4),
+          0 + (duration/4), 0 + (duration),
           color(25.6, 15.45, 96.47, 85),
           color(247.8, 32.11, 74.51, 85)
         )
         let rad = radians(i);
-        xLineS = x + (duration / 2 * cos(rad - radians(90)));
-        yLineS = y + (duration / 2 * sin(rad - radians(90)));
-        xLineE = x - (duration / 2 * cos(rad));
-        yLineE = y - (duration / 2 * sin(rad)*-1);
+        xLineS = 0 + (duration / 2 * cos(rad - radians(90)));
+        yLineS = 0 + (duration / 2 * sin(rad - radians(90)));
+        xLineE = 0 - (duration / 2 * cos(rad));
+        yLineE = 0 - (duration / 2 * sin(rad)*-1);
         line(xLineS, yLineS, xLineE, yLineE);
+        pop();
       }
     }
   }
@@ -423,15 +427,19 @@ function draw() {
     let y = middleCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(1)
+    push();
+    translate(x, y);
+    rotate(frameCount * -0.03);
     linearGradientFill(
-      x - (duration / 2), y - (duration / 2),
-      x + (duration / 2), y + (duration / 2),
+      0 - (duration / 2), 0 - (duration / 2),
+      0 + (duration / 2), 0 + (duration / 2),
       color(25.6, 15.45, 96.47, 80),
       color(247.8, 32.11, 74.51, 80),
     );
     if (activity === 'cigarette' && name === 'Sailor') {
-      ellipse(x, y, duration, duration);
+      ellipse(0, 0, duration, duration);
     }
+    pop();
   }
   
   // Others smoking
@@ -446,15 +454,19 @@ function draw() {
     noFill();
     strokeWeight(duration / 2 - (duration / 2 * 0.65));
     stroke(1);
+    push();
+    translate(x, y);
+    rotate(frameCount * -0.03);
     linearGradientStroke(
-      x - (duration / 2), y - (duration / 2),
-      x + (duration / 2), y + (duration / 2),
+      0 - (duration / 2), 0 - (duration / 2),
+      0 + (duration / 2), 0 + (duration / 2),
       color(25.6, 15.45, 96.47, 80),
       color(247.8, 32.11, 74.51, 80),
     );
     if (activity === 'cigarette' && name !== 'Sailor' && name !== 'Lula') {
-      ellipse(x, y, duration, duration);
+      ellipse(0, 0, duration, duration);
     }
+    pop();
   }
   
   // Lula smoking
@@ -468,15 +480,19 @@ function draw() {
     let y = middleCircleWidth / 2 * sin(radians(angle)) + height/2;
     noStroke();
     fill(1);
+    push();
+    translate(x, y);
+    rotate(frameCount * 0.03);
     linearGradientFill(
-      x - (duration / 4), y - (duration / 4),
-      x + (duration / 4), y + (duration / 4),
+      0 - (duration / 4), 0 - (duration / 4),
+      0 + (duration / 4), 0 + (duration / 4),
       color(247.8, 32.11, 74.51, 60),
       color(15.62, 39.34, 95.69, 60),
     );
     if (activity === 'cigarette' && name === 'Lula') {
-      ellipse(x, y, duration, duration);
+      ellipse(0, 0, duration, duration);
     }
+    pop();
   }
   pop();
 
