@@ -8,4 +8,4 @@ The blog post I wrote about the idea: https://juditbekker.com/2021/09/12/wild-at
 
 Link to p5.js web editor (aka proof that it moves): https://editor.p5js.org/judkacag/full/WxbQWQETk
 
-![wildAtHeart-3](https://user-images.githubusercontent.com/67797642/154793817-0476aa96-68ca-4d77-9b3f-c5dd66219596.png)
+![wildAtHeart](https://user-images.githubusercontent.com/67797642/154794055-ddeaa1fa-7ca4-44a2-aad7-2fedbcbffce1.jpg)
